@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+            <style>
+                        /* --- DARK MODE OVERRIDES FOR PLAYLISTS PAGE --- */
+                        body.dark-mode .create-playlist-section {
+                            background: linear-gradient(135deg, #232323 0%, #3a2340 100%) !important;
+                            box-shadow: 0 8px 32px rgba(0,0,0,0.35) !important;
+                        }
+                        body.dark-mode .create-playlist-section h2 {
+                            color: #ffeaea !important;
+                        }
+                        body.dark-mode .playlist-card {
+                            background: #232323 !important;
+                            color: #ffeaea !important;
+                            box-shadow: 0 4px 16px rgba(0,0,0,0.18) !important;
+                            border-color: #333 !important;
+                        }
+                        body.dark-mode .playlist-card .playlist-title {
+                            color: #ffb3b3 !important;
+                        }
+                        body.dark-mode .playlist-card button {
+                            background: #804397 !important;
+                            color: #fff !important;
+                        }
+                        body.dark-mode .playlist-card button.delete-btn {
+                            background: #c00 !important;
+                            color: #fff !important;
+                        }
+                body.dark-mode {
+                    background: #181818 !important;
+                    color: #f1f1f1 !important;
+                }
+                body.dark-mode .top-bar {
+                    background: #232323 !important;
+                    border-bottom: 1px solid #333 !important;
+                }
+                body.dark-mode .nav-btn,
+                body.dark-mode .logout-link {
+                    background: #333 !important;
+                    color: #fff !important;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+                }
+                body.dark-mode .nav-btn.active {
+                    background: #900 !important;
+                    color: #fff !important;
+                    border-bottom: 2px solid #c00 !important;
+                }
+                body.dark-mode .song-card {
+                    background: #232323 !important;
+                    color: #f1f1f1 !important;
+                    box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
+                }
+                body.dark-mode .song-title {
+                    color: #ffb3b3 !important;
+                }
+                body.dark-mode .lyrics-toggle-btn {
+                    color: #ffb3b3 !important;
+                }
+                body.dark-mode .lyrics-toggle-btn:hover {
+                    background: #333 !important;
+                }
+                body.dark-mode .custom-audio-player {
+                    background: #232323 !important;
+                }
+                body.dark-mode .progress-bar,
+                body.dark-mode .volume-bar {
+                    background: #333 !important;
+                    accent-color: #c00 !important;
+                }
+                body.dark-mode .current-time,
+                body.dark-mode .duration {
+                    color: #ffb3b3 !important;
+                }
+                body.dark-mode pre.lyrics {
+                    background: #222 !important;
+                    color: #ffeaea !important;
+                }
+            </style>
+        <style>
+            /* Dark mode styles */
+            body.dark-mode {
+                background: #181818 !important;
+                color: #f1f1f1 !important;
+            }
+            body.dark-mode .top-bar {
+                background: #232323 !important;
+                border-bottom: 1px solid #333 !important;
+            }
+            body.dark-mode .nav-btn,
+            body.dark-mode .logout-link {
+                background: #333 !important;
+                color: #fff !important;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+            }
+            body.dark-mode .nav-btn.active {
+                background: #900 !important;
+                color: #fff !important;
+                border-bottom: 2px solid #c00 !important;
+            }
+            body.dark-mode .song-card {
+                background: #232323 !important;
+                color: #f1f1f1 !important;
+                box-shadow: 0 2px 12px rgba(0,0,0,0.18) !important;
+            }
+            body.dark-mode .song-title {
+                color: #ffb3b3 !important;
+            }
+            body.dark-mode .lyrics-toggle-btn {
+                color: #ffb3b3 !important;
+            }
+            body.dark-mode .lyrics-toggle-btn:hover {
+                background: #333 !important;
+            }
+            body.dark-mode .custom-audio-player {
+                background: #232323 !important;
+            }
+            body.dark-mode .progress-bar,
+            body.dark-mode .volume-bar {
+                background: #333 !important;
+                accent-color: #c00 !important;
+            }
+            body.dark-mode .current-time,
+            body.dark-mode .duration {
+                color: #ffb3b3 !important;
+            }
+            body.dark-mode pre.lyrics {
+                background: #222 !important;
+                color: #ffeaea !important;
+            }
+        </style>
+    <meta charset="UTF-8">
+    <title>Your Playlists</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 10px 20px;
+            box-sizing: border-box;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: #fff;
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+        body {
+            padding-top: 70px;
+        }
+        .top-bar .welcome {
+            margin-right: 15px;
+            white-space: nowrap;
+        }
+        .nav-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #2980b9;
+            color: #fff;
+            border: none;
+            border-radius: 7px;
+            padding: 10px 28px;
+            margin: 0 12px;
+            font-size: 20px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(41,128,185,0.07);
+            cursor: pointer;
+        }
+        .nav-btn:hover {
+            background: #1a5276;
+            color: #ffeaea;
+        }
+        .nav-btn.active {
+            background: #c00;
+            color: #fff !important;
+            border-bottom: 2px solid #900;
+            font-weight: bold;
+            box-shadow: 0 4px 16px rgba(200,0,0,0.10);
+        }
+        .nav-btn.playlists-btn {
+            background: #804397 !important;
+            color: #c00 !important;
+            border-radius: 10px !important;
+            padding: 10px 12px !important;
+            font-size: 20px !important;
+            height: 48px !important;
+            display: flex !important;
+            align-items: center !important;
+        }
+        .nav-btn.playlists-btn.active {
+            background: #c00 !important;
+            color: #fff !important;
+        }
+        .logout-link {
+            color: #c00;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #c00;
+            border-radius: 7px;
+            padding: 8px 22px;
+            margin-left: 18px;
+            font-size: 20px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .logout-link:hover {
+            background: #c00;
+            color: #fff;
+        }
+        /* Playlists Page Styling */
+        .create-playlist-section {
+            max-width: 1000px;
+            margin: 40px auto 60px;
+            padding: 40px;
+            background: linear-gradient(135deg, #804397 0%, #a05fcf 100%);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(128, 67, 151, 0.2);
+        }
+        .create-playlist-section h2 {
+            color: #fff !important;
+            margin-top: 0 !important;
+            margin-bottom: 20px !important;
+            font-size: 1.8rem !important;
+        }
+        .create-playlist-form {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+        .playlist-input {
+            flex: 1;
+            padding: 14px 18px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            background: #fff;
+            transition: box-shadow 0.3s;
+        }
+        .playlist-input::placeholder {
+            color: #bbb;
+        }
+        .playlist-input:focus {
+            outline: none;
+            box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+        }
+        .create-btn {
+            padding: 14px 32px;
+            background: #fff;
+            color: #804397;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            white-space: nowrap;
+        }
+        .create-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+        }
+        .playlists-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 28px;
+            padding: 0 20px;
+        }
+        .playlist-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            border: 2px solid transparent;
+            position: relative;
+        }
+        .playlist-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(128, 67, 151, 0.2);
+            border-color: #804397;
+        }
+        .playlist-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #804397, #a05fcf);
+            border-radius: 16px 16px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .playlist-card:hover::before {
+            opacity: 1;
+        }
+        .playlist-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .playlist-title {
+            flex: 1;
+            color: #804397;
+            text-decoration: none;
+            font-size: 1.4rem;
+            font-weight: 700;
+            transition: color 0.2s;
+            word-break: break-word;
+        }
+        .playlist-title:hover {
+            color: #a05fcf;
+        }
+        .playlist-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+        .rename-form {
+            flex: 1;
+            display: flex;
+            gap: 8px;
+            min-width: 0;
+        }
+        .rename-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+            min-width: 0;
+        }
+        .rename-input:focus {
+            outline: none;
+            border-color: #804397;
+            box-shadow: 0 0 8px rgba(128, 67, 151, 0.1);
+        }
+        .action-btn {
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #804397 0%, #a05fcf 100%);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(128, 67, 151, 0.3);
+        }
+        .action-btn:active {
+            transform: translateY(0);
+        }
+        .delete-form {
+            display: inline;
+        }
+        .delete-btn {
+            background: linear-gradient(135deg, #e74c3c 0%, #e67e73 100%);
+        }
+        .delete-btn:hover {
+            box-shadow: 0 6px 16px rgba(231, 76, 60, 0.3);
+        }
+        .no-playlists {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 80px 20px;
+            color: #999;
+        }
+        .no-playlists p:first-child {
+            font-size: 4rem;
+            margin: 0 0 16px 0;
+        }
+        .no-playlists p:last-child {
+            font-size: 1.2rem;
+            margin: 0;
+            color: #aaa;
+        }
+        .back-btn:hover {
+            background: #e0e0e0 !important;
+            color: #a05fcf !important;
+            box-shadow: 0 4px 12px rgba(128, 67, 151, 0.15);
+        }
+    </style>
+</head>
+<body class="dark-mode">
+    <h1 style="margin-bottom: 6px; text-align:center; color: #804397; font-size: 2.5rem;">🎵 GanaZone</h1>
+    <p style="margin-bottom: 28px; text-align:center; color:#666; font-size:1em;">Every Mood Has a Melody</p>
+    <div style="max-width: 1000px; margin: 0 auto 20px; padding: 0 20px;">
+        {% if playlist_page %}
+        <button id="backBtn" onclick="goToPreviousPlaylist()" class="back-btn" style="display: none; align-items: center; gap: 8px; color: #804397; border: none; background: #f0f0f0; font-weight: 600; font-size: 1.05rem; padding: 10px 16px; border-radius: 8px; transition: all 0.2s; cursor: pointer;">
+            ← Back to Previous Playlist
+        </button>
+        {% endif %}
+    </div>
+    <div class="top-bar" style="position:static;">
+        <span class="welcome">Hi! {{ session['username'] }}</span>
+        <button id="dark-mode-toggle" aria-label="Toggle dark mode" style="margin-right:18px; background:none; border:none; cursor:pointer; font-size:2em; display:flex; align-items:center; justify-content:center; outline:none;">
+            <span id="dark-mode-icon" style="pointer-events:none;">🌙</span>
+        </button>
+        <a href="{{ url_for('home') }}" class="nav-btn home-btn{% if request.endpoint == 'home' %} active{% endif %}">
+            <span style="font-size: 20px;">🏠</span> Home
+        </a>
+        <a href="{{ url_for('favourites') }}" class="nav-btn fav-btn{% if request.endpoint == 'favourites' %} active{% endif %}">
+            <span style="font-size: 20px;">&#10084;</span> Favourites
+        </a>
+        <a href="{{ url_for('playlists') }}" class="nav-btn playlists-btn{% if request.endpoint in ['playlists', 'view_playlist'] %} active{% endif %}">
+            <span style="font-size: 20px;">🎵</span> Playlists
+        </a>
+        <div style="flex:1 1 auto;"></div>
+        <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+    </div>
+    
+    <!-- Create Playlist Form -->
+    <div class="create-playlist-section">
+        <h2>Create New Playlist</h2>
+        <form method="post" action="{{ url_for('create_playlist') }}" class="create-playlist-form">
+            <input type="text" name="name" placeholder="Enter playlist name..." required class="playlist-input">
+            <button type="submit" class="create-btn">+ Create</button>
+        </form>
+    </div>
+    
+    <!-- Playlists Grid -->
+    <div class="playlists-container">
+        {% if playlists %}
+        {% for playlist in playlists %}
+        <div class="playlist-card">
+            <div class="playlist-header">
+                <a href="{{ url_for('view_playlist', playlist_id=playlist.id) }}" class="playlist-title" onclick="pushPlaylistToStack({{ playlist.id }})">{{ playlist.name }}</a>
+            </div>
+            <div class="playlist-actions">
+                <form method="post" action="{{ url_for('rename_playlist', playlist_id=playlist.id) }}" class="rename-form">
+                    <input type="text" name="name" placeholder="Rename..." class="rename-input" title="Rename this playlist">
+                    <button type="submit" class="action-btn rename-btn" title="Rename">Rename</button>
+                </form>
+                <form method="post" action="{{ url_for('delete_playlist', playlist_id=playlist.id) }}" class="delete-form" style="display:inline;">
+                    <button type="submit" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this playlist?')" title="Delete">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="no-playlists">
+            <p style="font-size: 3rem; margin: 0;">📭</p>
+            <p>No playlists yet. Create one above to get started!</p>
+        </div>
+        {% endif %}
+    </div>
+    </body>
+    <script>
+    // --- Dark mode toggle logic with icon ---
+    window.addEventListener('DOMContentLoaded', function() {
+        const toggleBtn = document.getElementById('dark-mode-toggle');
+        const icon = document.getElementById('dark-mode-icon');
+        const body = document.body;
+        function setIcon(isDark) {
+            if (icon) icon.textContent = isDark ? '☀️' : '🌙';
+            if (toggleBtn) toggleBtn.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+        }
+        // Load preference
+        let isDark = localStorage.getItem('darkMode') === 'true';
+        if (isDark) body.classList.add('dark-mode');
+        setIcon(isDark);
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', function() {
+                body.classList.toggle('dark-mode');
+                isDark = body.classList.contains('dark-mode');
+                localStorage.setItem('darkMode', isDark);
+                setIcon(isDark);
+            });
+        }
+    });
+    
+    // Playlist navigation tracking using a stack
+    function getPlaylistStack() {
+        const stack = localStorage.getItem('playlistStack');
+        return stack ? JSON.parse(stack) : [];
+    }
+
+    function setPlaylistStack(stack) {
+        localStorage.setItem('playlistStack', JSON.stringify(stack));
+    }
+
+    function pushPlaylistToStack(newPlaylistId) {
+        const currentUrl = window.location.pathname;
+        const match = currentUrl.match(/\/playlist\/(\d+)/);
+        if (match) {
+            const currentPlaylistId = match[1];
+            let stack = getPlaylistStack();
+            // Only push if not the same as the last one
+            if (stack.length === 0 || stack[stack.length - 1] != currentPlaylistId) {
+                stack.push(currentPlaylistId);
+                setPlaylistStack(stack);
+            }
+        }
+    }
+
+    function goToPreviousPlaylist() {
+        let stack = getPlaylistStack();
+        if (stack.length > 0) {
+            const prevId = stack.pop();
+            setPlaylistStack(stack);
+            if (prevId) {
+                window.location.href = '/playlist/' + prevId;
+            }
+        } else {
+            // Optionally, hide the button or go to playlists home
+            window.location.href = '/playlists';
+        }
+    }
+
+    // Show/hide back button on playlist view
+    document.addEventListener('DOMContentLoaded', function() {
+        const backBtn = document.getElementById('backBtn');
+        if (backBtn) {
+            let stack = getPlaylistStack();
+            if (stack.length > 0) {
+                backBtn.style.display = 'inline-flex';
+            } else {
+                backBtn.style.display = 'none';
+            }
+        }
+    });
+    </script>
+    {% if playlist_page %}
+    <h2 style="text-align:center;">Playlist: {{ playlist_name }}</h2>
+    <div class="songs-list">
+        {% for song in songs %}
+        <div class="song-card">
+            <div class="song-card-header">
+                <img src="https://via.placeholder.com/60x60?text=♪" alt="Song" class="song-img">
+                <div class="song-title-area">
+                    <span class="song-title">{{ song.title }}</span>
+                    <form method="post" action="{{ url_for('favourite', song_id=song.id) }}" style="display:inline; margin-left:10px;">
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        {% if song.is_favourite %}
+                        <input type="hidden" name="action" value="remove">
+                        <button type="submit" title="Remove from Favourites" style="background:none; border:none; cursor:pointer; font-size:1.5em; color:#c00;">
+                            <span aria-label="Remove from Favourites">&#10084;</span>
+                        </button>
+                        {% else %}
+                        <input type="hidden" name="action" value="add">
+                        <button type="submit" title="Add to Favourites" style="background:none; border:none; cursor:pointer; font-size:1.5em; color:#aaa;">
+                            <span aria-label="Add to Favourites">&#9825;</span>
+                        </button>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+            {% if song.filename %}
+            <div class="custom-audio-player" data-audio="audio-{{ song.id }}">
+                <audio id="audio-{{ song.id }}" src="{{ url_for('static', filename='audio/' + song.filename) }}"></audio>
+                <button class="play-pause-btn" onclick="togglePlay('{{ song.id }}', this)">▶️</button>
+                <span class="current-time">0:00</span>
+                <input type="range" class="progress-bar" value="0" min="0" max="100" step="0.1" oninput="seekAudio('{{ song.id }}', this.value)">
+                <span class="duration">0:00</span>
+                <input type="range" class="volume-bar" min="0" max="1" step="0.01" value="1" oninput="setVolume('{{ song.id }}', this.value)">
+            </div>
+            {% endif %}
+            <pre id="lyrics-{{ song.id }}" class="lyrics" style="display:none; margin-top:10px;">{{ song.lyrics }}</pre>
+        </div>
+        {% endfor %}
+    </div>
+    <script>
+    // ...existing JS for audio player and lyrics toggle can be included here if not already present...
+    </script>
+    {% endif %}
+    </html>
+</body>
+</html>

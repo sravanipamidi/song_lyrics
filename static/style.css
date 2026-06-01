@@ -1,0 +1,791 @@
+.auth-container form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+}
+.password-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-bottom: 0;
+}
+.auth-container button {
+    display: block;
+    width: 100%;
+    margin: 8px 0 0 0;
+}
+.switch-auth {
+    width: 100%;
+    display: block;
+    margin-top: 18px;
+    text-align: center;
+}
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    width: 100%;
+    padding: 14px 48px 14px 16px; /* more vertical and left padding, more space for icon */
+    margin-bottom: 0;
+    box-sizing: border-box;
+    font-size: 1.1em;
+    border-radius: 8px;
+    border: 1.5px solid #c9b6e7;
+    background: #faf8fc;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.password-wrapper input[type="password"]:focus,
+.password-wrapper input[type="text"]:focus {
+    border-color: #804397;
+    box-shadow: 0 0 0 2px #e6d6fa44;
+    outline: none;
+}
+.password-wrapper .eye-inside-input {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 32px;
+    width: 36px;
+    z-index: 2;
+    background: #faf8fc;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+    box-shadow: 0 1px 4px rgba(128, 67, 151, 0.07);
+    transition: background 0.2s, box-shadow 0.2s;
+}
+.password-wrapper .eye-inside-input:active,
+.password-wrapper .eye-inside-input:focus {
+    background: #e6d6fa;
+    outline: none;
+}
+body.dark-mode .top-bar .welcome {
+    color: #ffeaea !important;
+}
+/* Favourites button: purple when not active, red when active */
+a.nav-btn.fav-btn {
+    background: #804397 !important;
+    color: #c00 !important;
+    border-radius: 10px;
+    padding: 10px 28px;
+}
+/* Home button: purple when not active, red when active */
+a.nav-btn.home-btn {
+    background: #804397 !important;
+    color: #c00 !important;
+    border-radius: 10px;
+    padding: 10px 28px;
+}
+a.nav-btn.home-btn.active {
+    background: #c00 !important;
+    color: #fff !important;
+}
+/* Playlists button: purple when not active, red when active */
+a.nav-btn.playlists-btn,
+a.nav-btn.playlists-btn.active {
+    background: #804397 !important;
+    color: #c00 !important;
+    border-radius: 10px !important;
+    padding: 6px 10px !important;
+    font-size: 16px !important;
+    height: 38px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 4px !important;
+    text-align: center !important;
+    min-width: unset !important;
+    width: auto !important;
+}
+a.nav-btn.playlists-btn.active {
+    background: #c00 !important;
+    color: #fff !important;
+}
+a.nav-btn.playlists-btn.active {
+    background: #c00 !important;
+    color: #fff !important;
+}
+.search-bar-wrapper {
+ .search-bar-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 18px;
+}
+.nav-group {
+    display: flex;
+    gap: 56px;
+    align-items: center;
+}
+.top-bar .nav-btn, .top-bar .welcome {
+    color: #c00 !important;
+}
+.nav-btn {
+    margin-left: 32px;
+    color: #c00 !important;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 20px;
+    background: none;
+    border: none;
+    padding: 0;
+    transition: color 0.2s;
+    margin-top: 8px;
+.nav-btn:hover {
+    color: #e74c3c;
+}
+.logout-link {
+    color: #c00;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 18px;
+    border-radius: 6px;
+    background: #fff;
+    border: 2px solid #c00;
+    font-size: 20px;
+    margin-left: 24px;
+    transition: background 0.2s, color 0.2s;
+    box-sizing: border-box;
+}
+.logout-link:hover {
+    background: #c00;
+    color: #fff;
+}
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(120deg, #f8f4ff 0%, #e6d6fa 60%, #a05fcf 100%);
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 0;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    background: #fff;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+a {
+    text-decoration: none;
+    color: #2980b9;
+    font-weight: bold;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+.auth-container {
+    max-width: 400px;
+    margin: 60px auto;
+    background: #fff;
+    padding: 32px 28px 28px 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(128, 67, 151, 0.10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.auth-container h2 {
+    margin-bottom: 24px;
+    color: #804397;
+    font-size: 2rem;
+    font-weight: 600;
+}
+.auth-container label {
+    display: block;
+    margin-bottom: 6px;
+    color: #333;
+    font-weight: 500;
+}
+.auth-container input[type="text"],
+.auth-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #faf8fc;
+    transition: border 0.2s;
+    box-sizing: border-box;
+}
+
+/* Ensure the password field and eye icon are positioned correctly */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    width: 100%;
+    padding-right: 40px; /* space for the icon */
+    margin-bottom: 0;
+    box-sizing: border-box;
+}
+.password-wrapper .eye-inside-input {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 28px;
+    width: 32px;
+    z-index: 2;
+    background: #faf8fc;
+    border-radius: 50%;
+    padding: 0;
+    border: none;
+}
+.auth-container input:focus {
+    border: 1.5px solid #804397;
+    outline: none;
+}
+.auth-container button {
+    width: 100%;
+    padding: 12px;
+    background: #804397;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s;
+}
+.auth-container button:hover {
+    background: #a05fcf;
+}
+.switch-auth {
+    margin-top: 18px;
+    text-align: center;
+}
+.switch-auth a {
+    color: #804397;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.switch-auth a:hover {
+    color: #c00;
+}
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 18px;
+    color: #c00;
+    font-weight: 500;
+    text-align: center;
+}
+
+.top-bar {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    background: #fff;
+    border-bottom: 1px solid #e1e4e8;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.top-bar .welcome {
+    margin-right: 15px;
+    color: #c00;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    margin: 0 24px;
+}
+
+.nav-btn {
+    background: none;
+    color: #c0392b;
+    border: none;
+    border-radius: 4px;
+    padding: 0 2px;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.2s;
+    display: inline-block;
+}
+.nav-btn:hover {
+    color: #e74c3c;
+    background: none;
+}
+.logout-link {
+    color: #c0392b;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 6px 14px;
+    border-radius: 4px;
+    background: #f6f8fa;
+    border: 1px solid #c0392b;
+    transition: background 0.2s, color 0.2s;
+}
+.logout-link:hover {
+    background: #c0392b;
+    color: #fff;
+}
+.nav-btn {
+    background: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 7px 16px;
+    margin-right: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+    display: inline-block;
+}
+.nav-btn:hover {
+    background: #1a5a85;
+    color: #fff;
+}
+
+.songs-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+.song-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+    margin-bottom: 28px;
+    padding: 24px 28px 18px 28px;
+}
+.song-item h2 {
+    margin-top: 0;
+    color: #2980b9;
+}
+.lyrics {
+    background: #f6f8fa;
+    border-radius: 6px;
+    padding: 12px;
+    font-size: 15px;
+    color: #34495e;
+    margin: 12px 0 18px 0;
+    white-space: pre-wrap;
+}
+.rating, .comments {
+    margin-bottom: 10px;
+}
+.rating label {
+    font-weight: bold;
+    margin-right: 8px;
+}
+.rating select {
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #d0d7de;
+    margin-right: 8px;
+}
+.rating button {
+    background: #27ae60;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.rating button:hover {
+    background: #1e8449;
+}
+.comments h4 {
+    margin-bottom: 8px;
+    color: #2c3e50;
+}
+.comments ul {
+    padding-left: 0;
+}
+.comments li {
+    background: #f6f8fa;
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+.comments form textarea {
+    width: 100%;
+    min-height: 40px;
+    border-radius: 4px;
+    border: 1px solid #d0d7de;
+    padding: 6px 10px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    background: #fff;
+}
+.comments form button {
+    background: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.comments form button:hover {
+    background: #1a5a85;
+}
+
+/* Playlists Page Redesign */
+.create-playlist-section {
+    max-width: 1000px;
+    margin: 40px auto 60px;
+    padding: 40px;
+    background: linear-gradient(135deg, #804397 0%, #a05fcf 100%);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(128, 67, 151, 0.2);
+}
+
+.create-playlist-section h2 {
+    color: #fff !important;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    font-size: 1.8rem !important;
+}
+
+.create-playlist-form {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.playlist-input {
+    flex: 1;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    background: #fff;
+    transition: box-shadow 0.3s;
+}
+
+.playlist-input::placeholder {
+    color: #bbb;
+}
+
+.playlist-input:focus {
+    outline: none;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+.create-btn {
+    padding: 14px 32px;
+    background: #fff;
+    color: #804397;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+
+.create-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+}
+
+.playlists-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 28px;
+    padding: 0 20px;
+}
+
+.playlist-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    border: 2px solid transparent;
+    position: relative;
+}
+
+.playlist-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(128, 67, 151, 0.2);
+    border-color: #804397;
+}
+
+.playlist-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #804397, #a05fcf);
+    border-radius: 16px 16px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.playlist-card:hover::before {
+    opacity: 1;
+}
+
+.playlist-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.playlist-title {
+    flex: 1;
+    color: #804397;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+    transition: color 0.2s;
+    word-break: break-word;
+}
+
+.playlist-title:hover {
+    color: #a05fcf;
+}
+
+.playlist-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.rename-form {
+    flex: 1;
+    display: flex;
+    gap: 8px;
+    min-width: 0;
+}
+
+.rename-input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    min-width: 0;
+}
+
+.rename-input:focus {
+    outline: none;
+    border-color: #804397;
+    box-shadow: 0 0 8px rgba(128, 67, 151, 0.1);
+}
+
+.action-btn {
+    padding: 10px 16px;
+    background: linear-gradient(135deg, #804397 0%, #a05fcf 100%);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(128, 67, 151, 0.3);
+}
+
+.action-btn:active {
+    transform: translateY(0);
+}
+
+.delete-form {
+    display: inline;
+}
+
+.delete-btn {
+    background: linear-gradient(135deg, #e74c3c 0%, #e67e73 100%);
+}
+
+.delete-btn:hover {
+    box-shadow: 0 6px 16px rgba(231, 76, 60, 0.3);
+}
+
+.no-playlists {
+    text-align: center;
+    grid-column: 1 / -1;
+    padding: 80px 20px;
+    color: #999;
+}
+
+.no-playlists p:first-child {
+    font-size: 4rem;
+    margin: 0 0 16px 0;
+}
+
+.no-playlists p:last-child {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #aaa;
+}
+
+form[action*="songs"] {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+form[action*="songs"] input[type="text"] {
+    width: 220px;
+    padding: 7px 10px;
+    border-radius: 4px;
+    border: 1px solid #d0d7de;
+    font-size: 15px;
+}
+form[action*="songs"] select, form[action*="songs"] button {
+    padding: 7px 10px;
+    border-radius: 4px;
+    border: 1px solid #d0d7de;
+    font-size: 15px;
+}
+form[action*="songs"] button {
+    background: #27ae60;
+    color: #fff;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+form[action*="songs"] button:hover {
+    background: #1e8449;
+}
+
+@media (max-width: 600px) {
+    .auth-container, .songs-list, .song-item {
+        padding: 12px !important;
+    }
+    .song-item {
+        padding: 12px 8px 10px 8px !important;
+    }
+    .top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 6px;
+    }
+}
+
+/* Remove password-wrapper and toggle styles (plain input only) */
+.password-wrapper { display: contents; }
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #faf8fc;
+    box-sizing: border-box;
+    margin-bottom: 18px;
+}
+.password-wrapper button { display: none !important; }
+
+/* Password input with perfectly aligned eye icon */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 18px;
+    height: 42px;
+}
+.password-wrapper input[type="password"],
+.password-wrapper input[type="text"] {
+    width: 100%;
+    height: 100%;
+    padding: 10px 48px 10px 10px; /* more right padding for icon */
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #faf8fc;
+    box-sizing: border-box;
+    display: block;
+}
+    position: absolute !important;
+    right: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: #faf8fc !important;
+    border-radius: 50% !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 28px !important;
+    width: 32px !important;
+    z-index: 2 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* --- Playlist Dropdown Robust Fix --- */
+.add-to-playlist-dropdown {
+    position: relative !important;
+    display: inline-block !important;
+}
+.playlist-dropdown-menu {
+    z-index: 9999 !important;
+    background: #fff !important;
+    border: 2px solid #804397 !important;
+    box-shadow: 0 8px 32px rgba(128,67,151,0.18) !important;
+}
+.song-card, .song-card-header {
+    overflow: visible !important;
+}
