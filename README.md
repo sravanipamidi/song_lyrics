@@ -2,6 +2,8 @@
 
 [![Python](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org/)
 [![Flask](https://img.shields.io/badge/flask-2.3-black)](https://flask.palletsprojects.com/)
+[![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E.svg?logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![SQL](https://img.shields.io/badge/sql-%23447A8A.svg?logo=mysql&logoColor=white)](https://en.wikipedia.org/wiki/SQL)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 A Flask-based web app for browsing, playing, and organizing Telugu songs with lyrics, playlists, favourites, and user authentication.
